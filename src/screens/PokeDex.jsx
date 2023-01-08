@@ -40,7 +40,7 @@ const PokeDex = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#333" }}>
       <PokemonsList pokemons={pokemons} />
     </SafeAreaView>
   );
