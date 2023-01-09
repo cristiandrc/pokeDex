@@ -17,7 +17,7 @@ export default function Pokemon({ navigation, route: { params } }) {
           color="#fff"
           size={20}
           style={{ marginRight: 20 }}
-          onPress={() => console.log(`${pokemon.name} added to favorites `)}
+          onPress={() => console.log(`${pokemon?.name} added to favorites `)}
         />
       ),
       headerLeft: () => (
