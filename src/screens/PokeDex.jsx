@@ -5,6 +5,7 @@ import PokemonsList from "../components/PokemonsList";
 
 const PokeDex = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [nextUrl, setNextUrl] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -14,7 +15,7 @@ const PokeDex = () => {
 
   const loadPokemons = async () => {
     try {
-      const { results } = await getPokemonsApi();
+      const { next, results } = await getPokemonsApi(nextUrl);
 
       const pokemonsArray = await Promise.all(
         results.map(async (pokemon) => {
@@ -31,7 +32,7 @@ const PokeDex = () => {
           };
         })
       );
-
+      setNextUrl(next);
       setPokemons([...pokemons, ...pokemonsArray]);
     } catch (error) {
       console.error(error);
@@ -40,7 +41,11 @@ const PokeDex = () => {
 
   return (
     <SafeAreaView>
-      <PokemonsList pokemons={pokemons} />
+      <PokemonsList
+        pokemons={pokemons}
+        loadPokemons={loadPokemons}
+        isNext={nextUrl}
+      />
     </SafeAreaView>
   );
 };
