@@ -1,15 +1,18 @@
 import { StyleSheet, View, Image, Text, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import getColorByPokemonType from "../utils/getColorByPokemonType";
 
 export default function PokemonCard({ poke }) {
   const pokemonColor = getColorByPokemonType(poke.type);
+  const navigation = useNavigation();
+
   const bgStyle = {
     backgroundColor: pokemonColor,
     ...styles.bgStyle,
   };
   const gotoPokemon = () => {
-    console.log(`vamos al pokemon ${poke.name}`);
+    navigation.navigate("Pokemon", { id: poke.id });
   };
   return (
     <Pressable onPress={gotoPokemon} style={{ flex: 1 }}>
