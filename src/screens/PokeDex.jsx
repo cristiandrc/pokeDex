@@ -5,7 +5,6 @@ import PokemonsList from "../components/PokemonsList";
 
 const PokeDex = () => {
   const [pokemons, setPokemons] = useState([]);
-  console.log("Pokemons----------->", pokemons);
 
   useEffect(() => {
     (async () => {
@@ -40,7 +39,7 @@ const PokeDex = () => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#333" }}>
+    <SafeAreaView>
       <PokemonsList pokemons={pokemons} />
     </SafeAreaView>
   );
