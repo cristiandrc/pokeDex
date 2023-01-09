@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getPokemonDetailsApi } from "../api/pokemon";
+import Header from "../components/Pokemon/Header";
 
 export default function Pokemon({ navigation, route: { params } }) {
   const [pokemon, setPokemon] = useState();
@@ -18,9 +19,13 @@ export default function Pokemon({ navigation, route: { params } }) {
 
   if (!pokemon) return null;
   return (
-    <View>
-      <Text>We're on a pokemon id {params.id}</Text>
-      <Text>{pokemon.name}</Text>
-    </View>
+    <ScrollView>
+      <Header
+        name={pokemon.name}
+        order={pokemon.order}
+        image={pokemon.sprites.other["official-artwork"].front_default}
+        type={pokemon.types[0].type.name}
+      />
+    </ScrollView>
   );
 }
