@@ -6,9 +6,10 @@ import {
   Button,
   Keyboard,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { user, userDetails } from "../../utils/userDB";
 
 const initialState = {
   username: "",
@@ -23,11 +24,20 @@ const validationSchema = () => {
 };
 
 const LoginForm = () => {
+  const [error, setError] = useState("");
   const { values, setFieldValue, handleSubmit, errors } = useFormik({
     initialValues: initialState,
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
-    onSubmit: (e) => console.log("Submitted Form", e),
+    onSubmit: (form) => {
+      setError("");
+      const { username, password } = form;
+      if (username !== user.username || password !== user.password) {
+        setError("User or password is wrong");
+      } else {
+        console.log("Login Correcto");
+      }
+    },
   });
   return (
     <ScrollView>
@@ -50,6 +60,7 @@ const LoginForm = () => {
       <Button title="Login" onPress={handleSubmit} />
       <Text style={styles.error}>{errors.username}</Text>
       <Text style={styles.error}>{errors.password}</Text>
+      <Text style={styles.error}>{error}</Text>
     </ScrollView>
   );
 };
