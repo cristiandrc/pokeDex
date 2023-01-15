@@ -1,10 +1,12 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { addPokemonFavorite } from "../../api/favorite";
 
 const Favorite = ({ id }) => {
-  const addFavorite = () => {
-    console.log("Added to favorites", id);
+  const addFavorite = async () => {
+    await addPokemonFavorite(id);
   };
+
   return (
     <Icon
       style={{ marginRight: 20 }}
