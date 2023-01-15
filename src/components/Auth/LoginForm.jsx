@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { user, userDetails } from "../../utils/userDB";
+import useAuth from "../../hooks/useAuth";
 
 const initialState = {
   username: "",
@@ -25,6 +26,8 @@ const validationSchema = () => {
 
 const LoginForm = () => {
   const [error, setError] = useState("");
+  const { login } = useAuth();
+
   const { values, setFieldValue, handleSubmit, errors } = useFormik({
     initialValues: initialState,
     validationSchema: Yup.object(validationSchema()),
@@ -35,6 +38,7 @@ const LoginForm = () => {
       if (username !== user.username || password !== user.password) {
         setError("User or password is wrong");
       } else {
+        login(userDetails);
         console.log("Login Correcto");
       }
     },
