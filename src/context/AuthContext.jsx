@@ -7,7 +7,12 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(undefined);
+  const [auth, setAuth] = useState({
+    username: "CristianD ",
+    firstName: "Cristian",
+    lastName: "Rojas",
+    email: "cristian.rojas.d@outlook.com",
+  });
 
   const login = (userData) => {
     setAuth(userData);
