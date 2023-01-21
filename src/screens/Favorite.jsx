@@ -4,6 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { getPokemonsFavoritesApi } from "../api/favorite";
 import { getPokemonDetailsApi } from "../api/pokemon";
 import PokemonsList from "../components/PokemonsList";
+import NoLogged from "../components/NoLogged";
 
 import useAuth from "../hooks/useAuth.jsx";
 
@@ -37,11 +38,7 @@ const Favorite = () => {
     }, [auth])
   );
 
-  return !auth ? (
-    <Text>you need to login</Text>
-  ) : (
-    <PokemonsList pokemons={pokemons} />
-  );
+  return !auth ? <NoLogged /> : <PokemonsList pokemons={pokemons} />;
 };
 
 export default Favorite;
