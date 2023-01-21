@@ -21,7 +21,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package":"dev.cristiandrc.pokedex",
+      "package": "dev.cristiandrc.pokedex",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -29,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "10cb4c02-c738-48c0-87a4-e5ae7b06ec09"
+      }
     }
   }
 }
