@@ -25,7 +25,7 @@ export default function Pokemon({ navigation, route: { params } }) {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, auth]);
 
   useEffect(() => {
     (async () => {
